@@ -6,15 +6,15 @@ import { getAuth } from "firebase/auth"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: process.env.local.SECRET_APP_KEY,
-	authDomain: process.env.local.AUTH_DOMAIN,
-	projectId: process.env.local.PROJECT_ID,
-	storageBucket: process.env.local.STORAGE_BUCKET,
-	messagingSenderId: process.env.local.MESSAGING_SENDER_ID,
-	appId: process.env.local.APP_ID,
+	apiKey: "AIzaSyCBsmWhNTW_h9ZzA3_qfcw88ExwMbrcXq8",
+	authDomain: "laptop-maniya.firebaseapp.com",
+	projectId: "laptop-maniya",
+	storageBucket: "laptop-maniya.appspot.com",
+	messagingSenderId: "997270790774",
+	appId: "1:997270790774:web:8f9174c777dc4fafbf7557",
 }
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
-
 const auth = getAuth(app)
+export default auth

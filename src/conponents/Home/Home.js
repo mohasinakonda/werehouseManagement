@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 const Home = () => {
-	const [user, setUser] = useState([])
+	/* const [user, setUser] = useState([])
 	//GET USER FROM  DB AND SHOW
 	useEffect(() => {
 		fetch("http://localhost:5000/user")
@@ -24,16 +24,16 @@ const Home = () => {
 					setUser(restUser)
 				})
 		}
-	}
+	} */
 	return (
 		<div>
 			<h2>Welcome to our home page</h2>
-			<p> user:{user.length}</p>
+			{/* <p> user:{user.length}</p>
 			{user.map((u) => (
 				<p key={u._id}>
 					{u.name} <button onClick={() => handleUserDelete(u._id)}>X</button>
 				</p>
-			))}
+			))} */}
 		</div>
 	)
 }
