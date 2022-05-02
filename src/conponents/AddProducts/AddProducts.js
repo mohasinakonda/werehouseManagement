@@ -15,7 +15,7 @@ const AddProducts = () => {
 			productSeller,
 			productImg,
 		}
-		console.log(product)
+		// console.log(product)
 		fetch("http://localhost:5000/product", {
 			method: "post",
 			headers: {
@@ -25,6 +25,7 @@ const AddProducts = () => {
 		})
 			.then((res) => res.json())
 			.then((data) => console.log(data))
+		event.target.reset()
 	}
 	return (
 		<div className="w-50 mx-auto">
@@ -59,14 +60,20 @@ const AddProducts = () => {
 					placeholder="img url"
 					required
 				/>
-				<input
-					className="w-100 p-2 my-2  "
-					type="text-area"
+
+				<textarea
 					name="description"
-					placeholder="Short Description"
-					required
+					cols="75"
+					rows="5"
+					style={{ outline: "none" }}
+					className="border-2 border-info"
+					placeholder="short description"
+				></textarea>
+				<input
+					type="submit"
+					className="d-block w-100 mx-auto btn btn-info"
+					value="Add product"
 				/>
-				<input type="submit" className="btn btn-info" value="Add " />
 			</form>
 		</div>
 	)

@@ -1,0 +1,7 @@
+.cart-item:hover{
+box-shadow:5px 5px 15px gray;
+transition: 300ms;
+}
+.cart-btn:hover{
+background-color: rgb(46, 85, 85);
+}
