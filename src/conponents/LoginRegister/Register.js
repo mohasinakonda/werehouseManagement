@@ -28,7 +28,9 @@ const Register = () => {
 				/>
 				<input type="submit" value="Register" />
 			</form>
-            <p>Already have an account? <Link to='logiu'></Link></p>
+			<p>
+				Already have an account? <Link to="login">Login</Link>
+			</p>
 			<button>Login with google</button>
 		</div>
 	)

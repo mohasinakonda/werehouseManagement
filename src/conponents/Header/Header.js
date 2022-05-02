@@ -1,17 +1,22 @@
 // import { Button } from "bootstrap"
+import { signOut } from "firebase/auth"
 import React from "react"
-import {
-	Button,
-	Container,
-	Form,
-	FormControl,
-	Nav,
-	Navbar,
-	NavDropdown,
-} from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Container, Nav, Navbar } from "react-bootstrap"
+import { useAuthState } from "react-firebase-hooks/auth"
+import { Link, useNavigate } from "react-router-dom"
+import auth from "../../FIrebaseConfig/FireBase.config"
+import SpinContainer from "../Spinner/Spinner"
 
 const Header = () => {
+	const navigate = useNavigate()
+	const [user, loading] = useAuthState(auth)
+	const logoutHandle = () => {
+		signOut(auth)
+		navigate("login")
+	}
+	if (loading) {
+		return <SpinContainer></SpinContainer>
+	}
 	return (
 		<Navbar collapseOnSelect expand="lg" bg="info" variant="light">
 			<Container>
@@ -29,9 +34,13 @@ const Header = () => {
 						</Nav.Link>
 					</Nav>
 					<Nav>
-						<Nav.Link as={Link} to="login">
-							Login
-						</Nav.Link>
+						{!user ? (
+							<Nav.Link as={Link} to="login">
+								Login
+							</Nav.Link>
+						) : (
+							<button onClick={logoutHandle}>Log Out</button>
+						)}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
