@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react"
-
+import { useNavigate } from "react-router-dom"
 const Home = () => {
-	/* const [user, setUser] = useState([])
+	const [user, setUser] = useState([])
+	const navigate = useNavigate()
+	const addProducts = () => {
+		navigate("product")
+	}
 	//GET USER FROM  DB AND SHOW
 	useEffect(() => {
-		fetch("http://localhost:5000/user")
+		fetch("http://localhost:5000/products")
 			.then((res) => res.json())
-			.then((users) => setUser(users))
+			.then((users) => {
+				console.log(users)
+
+				setUser(users)
+			})
 	}, [])
 
 	//DELETE USER FROM DB AND SHOW DISPLAY
@@ -24,16 +32,20 @@ const Home = () => {
 					setUser(restUser)
 				})
 		}
-	} */
+	}
+
 	return (
 		<div>
 			<h2>Welcome to our home page</h2>
-			{/* <p> user:{user.length}</p>
+			<button className="btn btn-info" onClick={addProducts}>
+				Add product
+			</button>
+			<p> user:{user.length}</p>
 			{user.map((u) => (
 				<p key={u._id}>
 					{u.name} <button onClick={() => handleUserDelete(u._id)}>X</button>
 				</p>
-			))} */}
+			))}
 		</div>
 	)
 }

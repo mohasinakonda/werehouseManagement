@@ -6,6 +6,7 @@ import Header from "./conponents/Header/Header"
 import "bootstrap/dist/css/bootstrap.min.css"
 import Login from "./conponents/LoginRegister/Login"
 import Register from "./conponents/LoginRegister/Register"
+import AddProducts from "./conponents/AddProducts/AddProducts"
 
 function App() {
 	/* const [user, setUser] = useState([])
@@ -39,6 +40,8 @@ function App() {
 				<Route path="/" element={<Home />}></Route>
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/register" element={<Register />}></Route>
+
+				<Route path="/product" element={<AddProducts />}></Route>
 			</Routes>
 		</div>
 	)

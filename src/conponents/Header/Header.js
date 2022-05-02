@@ -39,7 +39,9 @@ const Header = () => {
 								Login
 							</Nav.Link>
 						) : (
-							<button onClick={logoutHandle}>Log Out</button>
+							<button className="btn" onClick={logoutHandle} role="link">
+								Log Out
+							</button>
 						)}
 					</Nav>
 				</Navbar.Collapse>

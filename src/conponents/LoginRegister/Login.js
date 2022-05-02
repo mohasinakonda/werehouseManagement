@@ -13,6 +13,9 @@ const Login = () => {
 		const password = event.target.password.value
 		signInWithEmailAndPassword(email, password)
 	}
+	if (error) {
+		alert(error.message)
+	}
 	if (user) {
 		navigate("/")
 	}
@@ -22,11 +25,11 @@ const Login = () => {
 			<h2 className="text-center py-3">Please login,</h2>
 			<div className="row  align-items-center">
 				<img
-					className="col-6 img-fluid"
+					className="col-lg-6 col-md-12 img-fluid"
 					src="https://i.ibb.co/fYY9vLZ/3230.jpg"
 					alt=""
 				/>
-				<div className="m-2 col-5">
+				<div className="m-2 col-lg-5 col-md-12">
 					<form onSubmit={handleLogin}>
 						<input
 							className="w-100 p-2 border-style"
@@ -49,7 +52,13 @@ const Login = () => {
 						/>
 					</form>
 					<p className="py-3">
-						Need have an account?<Link to="/register">Create account</Link>
+						Need have an account?
+						<Link
+							style={{ textDecoration: "none", marginLeft: "5px" }}
+							to="/register"
+						>
+							Create account
+						</Link>
 					</p>
 					<button className="btn btn-info w-75 mx-auto">
 						Login with google
