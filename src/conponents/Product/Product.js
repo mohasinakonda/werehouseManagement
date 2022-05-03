@@ -1,6 +1,7 @@
 import React from "react"
 import "./Product.css"
 import { Card, Button } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
 const Product = (props) => {
 	const {
 		_id,
@@ -10,8 +11,9 @@ const Product = (props) => {
 		productQuantity,
 		productDescription,
 	} = props.product
-
+	const navigate = useNavigate()
 	const showProductDetails = (id) => {
+		navigate(`product/${id}`)
 		console.log(id)
 	}
 

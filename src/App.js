@@ -7,7 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import Login from "./conponents/LoginRegister/Login"
 import Register from "./conponents/LoginRegister/Register"
 import AddProducts from "./conponents/AddProducts/AddProducts"
-
+import ProductDetails from "./conponents/ProductDetails/ProductDetail"
+import NotFound from "./conponents/NotFound/NotFound"
 function App() {
 	/* const [user, setUser] = useState([])
 
@@ -42,6 +43,8 @@ function App() {
 				<Route path="/register" element={<Register />}></Route>
 
 				<Route path="/product" element={<AddProducts />}></Route>
+				<Route path="product/:productId" element={<ProductDetails />}></Route>
+				<Route path="*" element={<NotFound></NotFound>}></Route>
 			</Routes>
 		</div>
 	)
