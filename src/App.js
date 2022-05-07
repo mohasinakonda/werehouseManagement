@@ -9,6 +9,7 @@ import Register from "./conponents/LoginRegister/Register"
 import AddProducts from "./conponents/AddProducts/AddProducts"
 import ProductDetails from "./conponents/ProductDetails/ProductDetail"
 import NotFound from "./conponents/NotFound/NotFound"
+import UpdateProduct from "./conponents/UpdateProduct/UpdateProduct"
 function App() {
 	/* const [user, setUser] = useState([])
 
@@ -41,9 +42,12 @@ function App() {
 				<Route path="/" element={<Home />}></Route>
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/register" element={<Register />}></Route>
-
 				<Route path="/product" element={<AddProducts />}></Route>
-				<Route path="product/:productId" element={<ProductDetails />}></Route>
+				<Route
+					path="product/:productId"
+					element={<ProductDetails />}
+				></Route>{" "}
+				<Route path="update/:updateId" element={<UpdateProduct />}></Route>
 				<Route path="*" element={<NotFound></NotFound>}></Route>
 			</Routes>
 		</div>

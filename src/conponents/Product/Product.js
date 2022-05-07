@@ -13,7 +13,7 @@ const Product = (props) => {
 	} = props.product
 	const navigate = useNavigate()
 	const showProductDetails = (id) => {
-		navigate(`product/${id}`)
+		navigate(`/product/${id}`)
 		console.log(id)
 	}
 
