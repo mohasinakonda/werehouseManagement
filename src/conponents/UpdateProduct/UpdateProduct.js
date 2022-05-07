@@ -13,7 +13,7 @@ const UpdateProduct = () => {
 	const updateHandler = (event) => {
 		event.preventDefault()
 		const productName = event.target.name.value
-		const productQuantity = 12
+		const productQuantity = event.target.quantity.value
 		const info = { productName, productQuantity }
 
 		const url = `http://localhost:5000/update/${updateId}`
@@ -25,7 +25,7 @@ const UpdateProduct = () => {
 			body: JSON.stringify(info),
 		})
 			.then((res) => res.json())
-			.then((data) => console.log(data))
+			.then((data) => console.log(data.productQuantity))
 	}
 	return (
 		<div>
@@ -33,6 +33,7 @@ const UpdateProduct = () => {
 			<h3>{updateProduct.productName}</h3>
 			<form onSubmit={updateHandler}>
 				<input type="text" name="name" placeholder="update name" />
+				<input type="number" name="quantity" placeholder="update quantity" />
 				<input type="submit" value="update" />
 			</form>
 		</div>

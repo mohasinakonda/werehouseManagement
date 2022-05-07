@@ -12,12 +12,31 @@ const ProductDetail = () => {
 		productQuantity,
 		productDescription,
 	} = product
+	const [quantity, setQuantity] = useState(0)
 	const navigate = useNavigate()
 	useEffect(() => {
 		fetch(`http://localhost:5000/product/${productId}`)
 			.then((res) => res.json())
 			.then((data) => setProduct(data))
 	}, [])
+
+	const handleStock = () => {
+		setQuantity(quantity - 1)
+		const updatedQuantity = productQuantity - 1
+		setQuantity(updatedQuantity)
+
+		fetch(`http://localhost:5000/update/${productId}`, {
+			method: "put",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify({
+				productQuantity: updatedQuantity,
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => console.log(data))
+	}
 	const updateProductHandle = (id) => {
 		navigate(`/update/${id}`)
 	}
@@ -32,9 +51,11 @@ const ProductDetail = () => {
 					<b>Seller :</b> {productSeller}
 				</p>
 				<p>
-					{" "}
 					<b>Stock :</b>
-					{productQuantity}
+					update {quantity}:{productQuantity}
+					<button onClick={handleStock} className="btn btn-info">
+						delivered item
+					</button>
 				</p>
 				<p>
 					<b>Description :</b> {productDescription}
