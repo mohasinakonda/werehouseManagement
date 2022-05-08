@@ -21,9 +21,10 @@ const ProductDetail = () => {
 	}, [])
 
 	const handleStock = () => {
-		setQuantity(quantity - 1)
+		// setQuantity(quantity - 1)
 		const updatedQuantity = productQuantity - 1
-		setQuantity(updatedQuantity)
+		console.log(quantity)
+		setQuantity(productQuantity - 1)
 
 		fetch(`http://localhost:5000/update/${productId}`, {
 			method: "put",
@@ -35,7 +36,10 @@ const ProductDetail = () => {
 			}),
 		})
 			.then((res) => res.json())
-			.then((data) => console.log(data))
+			.then((data) => {
+				alert("product delivered!!")
+				console.log(data)
+			})
 	}
 	const updateProductHandle = (id) => {
 		navigate(`/update/${id}`)
@@ -52,10 +56,7 @@ const ProductDetail = () => {
 				</p>
 				<p>
 					<b>Stock :</b>
-					update {quantity}:{productQuantity}
-					<button onClick={handleStock} className="btn btn-info">
-						delivered item
-					</button>
+					update {quantity}
 				</p>
 				<p>
 					<b>Description :</b> {productDescription}
@@ -65,6 +66,9 @@ const ProductDetail = () => {
 					className="btn btn-info"
 				>
 					Update product
+				</button>
+				<button onClick={handleStock} className="btn btn-info">
+					delivered item
 				</button>
 			</div>
 		</div>

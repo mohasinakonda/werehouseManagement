@@ -1,25 +1,42 @@
 import React from "react"
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth"
-import { Link, useNavigate } from "react-router-dom"
+import {
+	useAuthState,
+	useSignInWithEmailAndPassword,
+	useSignInWithGoogle,
+} from "react-firebase-hooks/auth"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import auth from "../../FIrebaseConfig/FireBase.config"
+
+import SpinContainer from "../Spinner/Spinner"
 import "./login.css"
 const Login = () => {
-	const [signInWithEmailAndPassword, user, loading, error] =
+	const [user, loading] = useAuthState(auth)
+	const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth)
+
+	const [signInWithEmailAndPassword, passUser, passLoading, error] =
 		useSignInWithEmailAndPassword(auth)
 	const navigate = useNavigate()
+	const location = useLocation()
+	let from = location.state?.from?.pathname || "/"
+
 	const handleLogin = (event) => {
 		event.preventDefault()
 		const email = event.target.email.value
 		const password = event.target.password.value
 		signInWithEmailAndPassword(email, password)
 	}
+
 	if (error) {
 		alert(error.message)
 	}
 	if (user) {
-		navigate("/")
+		navigate(from, { replace: true })
+		// navigate("/")
 	}
 
+	const handleGoogleSignIn = () => {
+		signInWithGoogle()
+	}
 	return (
 		<div className="w-75 mx-auto">
 			<h2 className="text-center py-3">Please login,</h2>
@@ -60,7 +77,10 @@ const Login = () => {
 							Create account
 						</Link>
 					</p>
-					<button className="btn btn-info w-75 mx-auto">
+					<button
+						onClick={handleGoogleSignIn}
+						className="btn btn-info w-75 mx-auto"
+					>
 						Login with google
 					</button>
 				</div>

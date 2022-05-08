@@ -14,30 +14,12 @@ const Home = () => {
 		fetch("http://localhost:5000/product")
 			.then((res) => res.json())
 			.then((product) => {
+				if (!product) {
+					return <SpinContainer></SpinContainer>
+				}
 				setProduct(product)
 			})
 	}, [])
-
-	if (!product) {
-		return <SpinContainer></SpinContainer>
-	}
-
-	//DELETE USER FROM DB AND SHOW DISPLAY
-	/* const handleUserDelete = (id) => {
-		const proceed = window.confirm("are You sure to delete user")
-		if (proceed) {
-			console.log("user id", id)
-			const url = `http://localhost:5000/user/${id}`
-			fetch(url, {
-				method: "delete",
-			})
-				.then((res) => res.json())
-				.then((data) => {
-					const restUser = user.filter((u) => u._id !== id)
-					setProduct(restUser)
-				})
-		}
-	} */
 
 	return (
 		<div>
@@ -49,10 +31,13 @@ const Home = () => {
 			>
 				Add product
 			</button>
-			<div className="row g-3 justify-content-center py-5">
-				{product.map((prdct) => (
-					<Product product={prdct} />
+			<div className="row justify-content-center container mx-auto py-5">
+				{product?.slice(0, 6)?.map((prdct) => (
+					<Product key={prdct._id} product={prdct} />
 				))}
+				<button onClick={() => navigate("/manage")} className="btn btn-info">
+					Manage Products
+				</button>
 			</div>
 		</div>
 	)

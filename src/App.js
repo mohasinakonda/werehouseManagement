@@ -10,6 +10,8 @@ import AddProducts from "./conponents/AddProducts/AddProducts"
 import ProductDetails from "./conponents/ProductDetails/ProductDetail"
 import NotFound from "./conponents/NotFound/NotFound"
 import UpdateProduct from "./conponents/UpdateProduct/UpdateProduct"
+import ManageProducts from "./conponents/ManageProducts/ManageProducts"
+import RequireAuth from "./conponents/RequierAuth/RequireAuth"
 function App() {
 	/* const [user, setUser] = useState([])
 
@@ -42,12 +44,31 @@ function App() {
 				<Route path="/" element={<Home />}></Route>
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/register" element={<Register />}></Route>
-				<Route path="/product" element={<AddProducts />}></Route>
 				<Route
-					path="product/:productId"
-					element={<ProductDetails />}
-				></Route>{" "}
-				<Route path="update/:updateId" element={<UpdateProduct />}></Route>
+					path="/product"
+					element={
+						<RequireAuth>
+							<AddProducts />
+						</RequireAuth>
+					}
+				></Route>
+				<Route
+					path="/manage"
+					element={
+						<RequireAuth>
+							<ManageProducts />
+						</RequireAuth>
+					}
+				></Route>
+				<Route path="product/:productId" element={<ProductDetails />}></Route>{" "}
+				<Route
+					path="update/:updateId"
+					element={
+						<RequireAuth>
+							<UpdateProduct />
+						</RequireAuth>
+					}
+				></Route>
 				<Route path="*" element={<NotFound></NotFound>}></Route>
 			</Routes>
 		</div>

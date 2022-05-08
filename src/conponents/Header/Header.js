@@ -9,14 +9,12 @@ import SpinContainer from "../Spinner/Spinner"
 
 const Header = () => {
 	const navigate = useNavigate()
-	const [user, loading] = useAuthState(auth)
+	const [user] = useAuthState(auth)
 	const logoutHandle = () => {
 		signOut(auth)
 		navigate("login")
 	}
-	if (loading) {
-		return <SpinContainer></SpinContainer>
-	}
+
 	return (
 		<Navbar collapseOnSelect expand="lg" bg="info" variant="light">
 			<Container>
@@ -39,9 +37,14 @@ const Header = () => {
 								Login
 							</Nav.Link>
 						) : (
-							<button className="btn" onClick={logoutHandle} role="link">
-								Log Out
-							</button>
+							<>
+								<Nav.Link as={Link} to="manage">
+									manage Product
+								</Nav.Link>
+								<button className="btn" onClick={logoutHandle} role="link">
+									Log Out
+								</button>
+							</>
 						)}
 					</Nav>
 				</Navbar.Collapse>

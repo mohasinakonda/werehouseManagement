@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import SpinContainer from "../Spinner/Spinner"
 
 const AddProducts = () => {
 	const sendProductInfoSever = (event) => {
@@ -24,8 +25,11 @@ const AddProducts = () => {
 			body: JSON.stringify(product),
 		})
 			.then((res) => res.json())
-			.then((data) => console.log(data))
-		event.target.reset()
+			.then((data) => {
+				event.target.reset()
+				alert("product added my stock")
+				console.log(data)
+			})
 	}
 	return (
 		<div className="w-50 mx-auto">
@@ -80,4 +84,3 @@ const AddProducts = () => {
 }
 
 export default AddProducts
-;<h2>Add Products</h2>
