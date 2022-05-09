@@ -1,11 +1,15 @@
-# Getting Started with Create React App
+# Welcome to our laptop mart
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+see more here [Laptop mart](https://laptop-mart.netlify.app/).
 
-## Available Scripts
+## useful
 
-In the project directory, you can run:
+### [add product](https://laptop-mart.netlify.app/add-product).
+
+### [manage product](https://laptop-mart.netlify.app/manage-product).
+
+### [blogs](https://laptop-mart.netlify.app/blogs).
 
 ## Here is stack over flow question .\
 
-Open [stackoverflow question](https://stackoverflow.com/questions/72084767/how-do-i-create-banner-using-bootstrap)
+see my stack overflow question [stack overflow question](https://stackoverflow.com/questions/72169084/heroku-route-does-not-work-remotely-but-locally-work)
