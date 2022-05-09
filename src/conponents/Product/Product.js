@@ -22,7 +22,12 @@ const Product = (props) => {
 				className="cart-item "
 				style={{ width: "18rem", margin: "10px", height: "700px" }}
 			>
-				<Card.Img variant="top" className="img-fluid pt-2" src={productImg} />
+				<Card.Img
+					variant="top"
+					style={{ height: "300px" }}
+					className="img-fluid pt-2"
+					src={productImg}
+				/>
 				<Card.Body>
 					<Card.Title> {productName}</Card.Title>
 					<Card.Title>

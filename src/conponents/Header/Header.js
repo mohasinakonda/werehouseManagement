@@ -38,13 +38,13 @@ const Header = () => {
 							</Nav.Link>
 						) : (
 							<>
-								<Nav.Link as={Link} to="manage">
-									manage Product
+								<Nav.Link as={Link} to="manage-product">
+									Manage Product
 								</Nav.Link>
 								<Nav.Link as={Link} to="myItem">
 									My Product
 								</Nav.Link>
-								<Nav.Link as={Link} to="product">
+								<Nav.Link as={Link} to="add-product">
 									Add Product
 								</Nav.Link>
 								<button className="btn" onClick={logoutHandle} role="link">

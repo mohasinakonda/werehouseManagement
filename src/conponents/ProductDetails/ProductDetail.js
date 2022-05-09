@@ -14,16 +14,23 @@ const ProductDetail = () => {
 	} = product
 
 	const [quantity, setQuantity] = useState(0)
+	console.log(quantity)
 	const navigate = useNavigate()
 	useEffect(() => {
 		fetch(`https://mohasin-laptop-market.herokuapp.com/product/${productId}`)
 			.then((res) => res.json())
-			.then((data) => setProduct(data))
-	}, [])
+			.then((data) => {
+				setQuantity(data.productQuantity)
+				setProduct(data)
+			})
+	}, [quantity])
 	const updateStock = (event) => {
+		event.preventDefault()
 		const updateQuantity = Number(event.target.updateQuantity.value)
 		const newQuantity = Number(productQuantity) + updateQuantity
 		setQuantity(newQuantity)
+		const restProduct = { productName, productImg, productSeller }
+		console.log(restProduct)
 
 		fetch(`https://mohasin-laptop-market.herokuapp.com/update/${productId}`, {
 			method: "put",
@@ -34,22 +41,20 @@ const ProductDetail = () => {
 				productName,
 				productImg,
 				productSeller,
-				productDescription,
 
+				productDescription,
 				productQuantity: newQuantity,
 			}),
 		})
 			.then((res) => res.json())
 			.then((data) => {
+				event.target.reset()
 				alert("product quantity update!!")
-				console.log(data)
 			})
 	}
 	const handleStock = () => {
-		// setQuantity(quantity - 1)
 		const updatedQuantity = productQuantity - 1
 
-		// setQuantity(productQuantity - 1)
 		setQuantity(updatedQuantity)
 
 		fetch(`https://mohasin-laptop-market.herokuapp.com/update/${productId}`, {
@@ -58,13 +63,20 @@ const ProductDetail = () => {
 				"content-type": "application/json",
 			},
 			body: JSON.stringify({
+				productName,
+				productImg,
+				productSeller,
+
+				productDescription,
+
 				productQuantity: updatedQuantity,
 			}),
 		})
-			.then((res) => res.json())
+			.then((res) => {
+				res.json()
+			})
 			.then((data) => {
 				alert("product delivered!!")
-				console.log(data)
 			})
 	}
 	const updateProductHandle = (id) => {
@@ -82,7 +94,7 @@ const ProductDetail = () => {
 				</p>
 				<p>
 					<b>Stock :</b>
-					{productQuantity}:{quantity}
+					{quantity}
 				</p>
 				<p>
 					<b>Description :</b> {productDescription}

@@ -8,14 +8,14 @@ const Home = () => {
 	const [product, setProduct] = useState([])
 	const navigate = useNavigate()
 	const addProducts = () => {
-		navigate("product")
+		navigate("add-product")
 	}
 	//GET USER FROM  DB AND SHOW
 	useEffect(() => {
 		fetch("https://mohasin-laptop-market.herokuapp.com/product")
 			.then((res) => res.json())
 			.then((product) => {
-				if (!product) {
+				if (product.length === 0) {
 					return <SpinContainer></SpinContainer>
 				}
 				setProduct(product)
@@ -43,7 +43,7 @@ const Home = () => {
 			>
 				<button
 					style={{ position: "absolute", right: "12%" }}
-					onClick={() => navigate("/manage")}
+					onClick={() => navigate("/manage-product")}
 					className="btn btn-info "
 				>
 					Manage Products

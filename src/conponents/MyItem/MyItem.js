@@ -8,7 +8,7 @@ const MyItem = () => {
 	const [item, setItem] = useState([])
 	useEffect(() => {
 		const email = user.email
-		const url = `http://localhost:5000/myItem?email=${email}`
+		const url = ` https://mohasin-laptop-market.herokuapp.com/myItem?email=${email}`
 		fetch(url)
 			.then((res) => res.json())
 			.then((data) => {
@@ -35,6 +35,7 @@ const MyItem = () => {
 	}
 	return (
 		<div>
+			<h2 className="pt-5">My products</h2>
 			<table className="table table-bordered table-dark">
 				<thead className="w-100 bg-dark">
 					<tr className="d-flex justify-content-around">
@@ -43,15 +44,16 @@ const MyItem = () => {
 						<th scope="col">action</th>
 					</tr>
 				</thead>
+
 				<tbody className="bg-info">
 					{item.map((product) => (
 						<div
 							key={product._id}
 							className="d-flex justify-content-around align-items-center"
 						>
-							<div className="w-25  my-2">
+							<div className="  my-2">
 								<img
-									style={{ height: "50px" }}
+									style={{ height: "100px", width: "150px" }}
 									className="img-fluid"
 									src={product.productImg}
 									alt=""

@@ -32,6 +32,7 @@ const ManageProducts = () => {
 	}
 	return (
 		<div>
+			<h2 className="pt-5">Manage all products</h2>
 			<table className="table table-bordered table-dark">
 				<thead className="w-100 bg-dark">
 					<tr className="d-flex justify-content-around">
@@ -46,10 +47,10 @@ const ManageProducts = () => {
 							key={product._id}
 							className="d-flex justify-content-around align-items-center"
 						>
-							<div className="w-25  my-2">
+							<div className="  my-2">
 								<img
-									style={{ height: "50px" }}
-									className="img-fluid"
+									style={{ height: "100px", width: "150px" }}
+									className="img-fluid "
 									src={product.productImg}
 									alt=""
 								/>

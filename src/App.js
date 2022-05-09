@@ -48,7 +48,7 @@ function App() {
 				<Route path="/register" element={<Register />}></Route>
 				<Route path="/blogs" element={<Blogs />}></Route>
 				<Route
-					path="/product"
+					path="/add-product"
 					element={
 						<RequireAuth>
 							<AddProducts />
@@ -56,7 +56,7 @@ function App() {
 					}
 				></Route>
 				<Route
-					path="/manage"
+					path="/manage-product"
 					element={
 						<RequireAuth>
 							<ManageProducts />
