@@ -1,16 +1,21 @@
-import React, { useEffect } from "react"
-import SpinContainer from "../Spinner/Spinner"
+import React from "react"
+
+import { useAuthState } from "react-firebase-hooks/auth"
+import auth from "../../FIrebaseConfig/FireBase.config"
 
 const AddProducts = () => {
+	const [user] = useAuthState(auth)
 	const sendProductInfoSever = (event) => {
 		event.preventDefault()
 		const productName = event.target.product.value
+		const userEmail = event.target.email.value
 		const productSeller = event.target.seller.value
 		const productQuantity = event.target.quantity.value
 		const productImg = event.target.img.value
 		const productDescription = event.target.description.value
 		const product = {
 			productName,
+			userEmail,
 			productDescription,
 			productQuantity,
 			productSeller,
@@ -28,7 +33,6 @@ const AddProducts = () => {
 			.then((data) => {
 				event.target.reset()
 				alert("product added my stock")
-				console.log(data)
 			})
 	}
 	return (
@@ -41,6 +45,16 @@ const AddProducts = () => {
 					type="text"
 					name="product"
 					placeholder="Enter Products name"
+					required
+				/>
+				<input
+					className="w-100 p-2 border-style"
+					type="email"
+					name="email"
+					value={user.email}
+					placeholder="Enter Products name"
+					readOnly
+					disabled
 					required
 				/>
 				<input

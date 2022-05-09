@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react"
+import { useAuthState } from "react-firebase-hooks/auth"
 import { useParams } from "react-router-dom"
+import auth from "../../FIrebaseConfig/FireBase.config"
 
 const UpdateProduct = () => {
+	const [user] = useAuthState(auth)
 	const { updateId } = useParams()
 	const [updateProduct, setUpdateProduct] = useState({})
 	useEffect(() => {
@@ -13,12 +16,14 @@ const UpdateProduct = () => {
 	const updateHandler = (event) => {
 		event.preventDefault()
 		const productName = event.target.product.value
+		const userEmail = event.target.email.value
 		const productSeller = event.target.seller.value
 		const productQuantity = event.target.quantity.value
 		const productImg = event.target.img.value
 		const productDescription = event.target.description.value
 		const product = {
 			productName,
+			userEmail,
 			productDescription,
 			productQuantity,
 			productSeller,
@@ -50,6 +55,15 @@ const UpdateProduct = () => {
 					type="text"
 					name="product"
 					placeholder="update Products name"
+					required
+				/>
+				<input
+					className="w-100 p-2 border-style"
+					type="email"
+					name="email"
+					value={user.email}
+					readOnly
+					disabled
 					required
 				/>
 				<input

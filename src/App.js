@@ -13,6 +13,7 @@ import UpdateProduct from "./conponents/UpdateProduct/UpdateProduct"
 import ManageProducts from "./conponents/ManageProducts/ManageProducts"
 import RequireAuth from "./conponents/RequierAuth/RequireAuth"
 import Blogs from "./conponents/Blogs/Blogs"
+import MyItem from "./conponents/MyItem/MyItem"
 function App() {
 	/* const [user, setUser] = useState([])
 
@@ -59,6 +60,14 @@ function App() {
 					element={
 						<RequireAuth>
 							<ManageProducts />
+						</RequireAuth>
+					}
+				></Route>
+				<Route
+					path="/myItem"
+					element={
+						<RequireAuth>
+							<MyItem></MyItem>
 						</RequireAuth>
 					}
 				></Route>

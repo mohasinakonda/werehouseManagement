@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react"
+import { useAuthState } from "react-firebase-hooks/auth"
 import { useNavigate } from "react-router-dom"
-// import Manage from "./Manage"
+import auth from "../../FIrebaseConfig/FireBase.config"
 
-const ManageProducts = () => {
-	const [manageProduct, setManageProduct] = useState([])
-
+const MyItem = () => {
+	const [user] = useAuthState(auth)
+	const [item, setItem] = useState([])
 	useEffect(() => {
-		fetch("https://mohasin-laptop-market.herokuapp.com/product/")
+		const email = user.email
+		const url = `http://localhost:5000/myItem?email=${email}`
+		fetch(url)
 			.then((res) => res.json())
-			.then((product) => setManageProduct(product))
-	}, [])
-	//
+			.then((data) => {
+				setItem(data)
+			})
+	}, [user])
 	const navigate = useNavigate()
 	const handleUpdate = (id) => {
 		navigate(`/update/${id}`)
@@ -22,13 +26,12 @@ const ManageProducts = () => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				const restProducts = manageProduct.filter((u) => u._id !== id)
-				setManageProduct(restProducts)
-				console.log(data)
+				const restProducts = item.filter((u) => u._id !== id)
+				setItem(restProducts)
 			})
 	}
-	if (manageProduct.length === 0) {
-		return <h2 className="text-center">No more data found</h2>
+	if (item.length === 0) {
+		return <h2 className="text-center">There is no more product found</h2>
 	}
 	return (
 		<div>
@@ -41,7 +44,7 @@ const ManageProducts = () => {
 					</tr>
 				</thead>
 				<tbody className="bg-info">
-					{manageProduct.map((product) => (
+					{item.map((product) => (
 						<div
 							key={product._id}
 							className="d-flex justify-content-around align-items-center"
@@ -77,4 +80,4 @@ const ManageProducts = () => {
 	)
 }
 
-export default ManageProducts
+export default MyItem
