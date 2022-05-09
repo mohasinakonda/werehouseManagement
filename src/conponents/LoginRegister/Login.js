@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import {
 	useAuthState,
+	useSendEmailVerification,
 	useSendPasswordResetEmail,
 	useSignInWithEmailAndPassword,
 	useSignInWithGoogle,
@@ -8,14 +9,15 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import auth from "../../FIrebaseConfig/FireBase.config"
-
 import SpinContainer from "../Spinner/Spinner"
+
 import "./login.css"
 const Login = () => {
 	const [email, setEmail] = useState("")
 	const [user, loading] = useAuthState(auth)
-	const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth)
-	const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth)
+	const [signInWithGoogle, googleUser, googleLoading] =
+		useSignInWithGoogle(auth)
+	const [sendPasswordResetEmail, Resetsending] = useSendPasswordResetEmail(auth)
 
 	const [signInWithEmailAndPassword, passUser, passLoading, error] =
 		useSignInWithEmailAndPassword(auth)
@@ -29,7 +31,9 @@ const Login = () => {
 		const password = event.target.password.value
 		signInWithEmailAndPassword(email, password)
 	}
-
+	if (Resetsending || googleLoading || passLoading) {
+		return <SpinContainer></SpinContainer>
+	}
 	if (error) {
 		toast(error.message)
 	}

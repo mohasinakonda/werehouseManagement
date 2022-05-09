@@ -2,6 +2,7 @@ import React from "react"
 import {
 	useAuthState,
 	useCreateUserWithEmailAndPassword,
+	useSendEmailVerification,
 	useSignInWithGoogle,
 } from "react-firebase-hooks/auth"
 import { Link, useLocation, useNavigate } from "react-router-dom"
@@ -9,6 +10,7 @@ import auth from "../../FIrebaseConfig/FireBase.config"
 import SpinContainer from "../Spinner/Spinner"
 
 const Register = () => {
+	const [sendEmailVerification, sending] = useSendEmailVerification(auth)
 	const [user, loading] = useAuthState(auth)
 	const [createUserWithEmailAndPassword, userHook, loadingHook] =
 		useCreateUserWithEmailAndPassword(auth)
@@ -18,14 +20,18 @@ const Register = () => {
 	const location = useLocation()
 	let from = location.state?.from?.pathname || "/"
 
-	const handleLogin = (event) => {
+	const handleRegister = (event) => {
 		event.preventDefault()
 		const email = event.target.email.value
 		const password = event.target.password.value
 		createUserWithEmailAndPassword(email, password)
+		sendEmailVerification()
 	}
 	const handleGoogleSignIn = () => {
 		signInWithGoogle()
+	}
+	if (googleLoading || loadingHook || sending) {
+		return <SpinContainer></SpinContainer>
 	}
 	if (user) {
 		navigate(from, { replace: true })
@@ -42,7 +48,7 @@ const Register = () => {
 					alt=""
 				/>
 				<div className="m-2 col-lg-5 col-md-12">
-					<form onSubmit={handleLogin}>
+					<form onSubmit={handleRegister}>
 						<input
 							className="w-100 p-2 border-style"
 							type="text"

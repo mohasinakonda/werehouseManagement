@@ -15,7 +15,7 @@ const ProductDetail = () => {
 	} = product
 
 	const [quantity, setQuantity] = useState(0)
-	console.log(quantity)
+
 	const navigate = useNavigate()
 	useEffect(() => {
 		fetch(`https://mohasin-laptop-market.herokuapp.com/product/${productId}`)
@@ -34,8 +34,6 @@ const ProductDetail = () => {
 		}
 		const newQuantity = Number(productQuantity) + updateQuantity
 		setQuantity(newQuantity)
-		const restProduct = { productName, productImg, productSeller }
-		console.log(restProduct)
 
 		fetch(`https://mohasin-laptop-market.herokuapp.com/update/${productId}`, {
 			method: "put",
