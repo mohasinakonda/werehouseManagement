@@ -38,9 +38,6 @@ const ManageProducts = () => {
 					</tr>
 				</thead>
 				<tbody className="bg-info">
-					{/* {manageProduct.map((data) => (
-						<Manage key={data._id} product={data}></Manage>
-					))} */}
 					{manageProduct.map((product) => (
 						<div
 							key={product._id}

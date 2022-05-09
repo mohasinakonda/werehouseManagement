@@ -33,7 +33,7 @@ const Product = (props) => {
 					</Card.Text>
 					<Card.Text>
 						<b>Description : </b>
-						{productDescription?.slice(100)}
+						{productDescription?.slice(0, 100)}
 					</Card.Text>
 					<Button
 						onClick={() => showProductDetails(_id)}

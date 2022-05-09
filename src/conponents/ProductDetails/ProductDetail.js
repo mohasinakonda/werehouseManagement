@@ -12,6 +12,7 @@ const ProductDetail = () => {
 		productQuantity,
 		productDescription,
 	} = product
+
 	const [quantity, setQuantity] = useState(0)
 	const navigate = useNavigate()
 	useEffect(() => {
@@ -21,14 +22,22 @@ const ProductDetail = () => {
 	}, [])
 	const updateStock = (event) => {
 		const updateQuantity = Number(event.target.updateQuantity.value)
-		const newQuantity = productQuantity + updateQuantity
-		const updateProduct = { ...product, newQuantity }
+		const newQuantity = Number(productQuantity) + updateQuantity
+		setQuantity(newQuantity)
+
 		fetch(`https://mohasin-laptop-market.herokuapp.com/update/${productId}`, {
 			method: "put",
 			headers: {
 				"content-type": "application/json",
 			},
-			body: JSON.stringify(updateProduct),
+			body: JSON.stringify({
+				productName,
+				productImg,
+				productSeller,
+				productDescription,
+
+				productQuantity: newQuantity,
+			}),
 		})
 			.then((res) => res.json())
 			.then((data) => {
@@ -40,7 +49,8 @@ const ProductDetail = () => {
 		// setQuantity(quantity - 1)
 		const updatedQuantity = productQuantity - 1
 
-		setQuantity(productQuantity - 1)
+		// setQuantity(productQuantity - 1)
+		setQuantity(updatedQuantity)
 
 		fetch(`https://mohasin-laptop-market.herokuapp.com/update/${productId}`, {
 			method: "put",
@@ -72,7 +82,7 @@ const ProductDetail = () => {
 				</p>
 				<p>
 					<b>Stock :</b>
-					{productQuantity}
+					{productQuantity}:{quantity}
 				</p>
 				<p>
 					<b>Description :</b> {productDescription}
