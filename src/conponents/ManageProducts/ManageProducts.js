@@ -6,7 +6,7 @@ const ManageProducts = () => {
 	const [manageProduct, setManageProduct] = useState([])
 
 	useEffect(() => {
-		fetch("http://localhost:5000/product/")
+		fetch("https://mohasin-laptop-market.herokuapp.com/product/")
 			.then((res) => res.json())
 			.then((product) => setManageProduct(product))
 	}, [])
@@ -16,7 +16,7 @@ const ManageProducts = () => {
 		navigate(`/update/${id}`)
 	}
 	const deleteHandler = (id) => {
-		const url = `http://localhost:5000/product/${id}`
+		const url = `https://mohasin-laptop-market.herokuapp.com/product/${id}`
 		fetch(url, {
 			method: "delete",
 		})

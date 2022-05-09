@@ -17,7 +17,7 @@ const AddProducts = () => {
 			productImg,
 		}
 		// console.log(product)
-		fetch("http://localhost:5000/product", {
+		fetch("https://mohasin-laptop-market.herokuapp.com/product", {
 			method: "post",
 			headers: {
 				"content-type": "application/json",

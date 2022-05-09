@@ -15,18 +15,34 @@ const ProductDetail = () => {
 	const [quantity, setQuantity] = useState(0)
 	const navigate = useNavigate()
 	useEffect(() => {
-		fetch(`http://localhost:5000/product/${productId}`)
+		fetch(`https://mohasin-laptop-market.herokuapp.com/product/${productId}`)
 			.then((res) => res.json())
 			.then((data) => setProduct(data))
 	}, [])
-
+	const updateStock = (event) => {
+		const updateQuantity = Number(event.target.updateQuantity.value)
+		const newQuantity = productQuantity + updateQuantity
+		const updateProduct = { ...product, newQuantity }
+		fetch(`https://mohasin-laptop-market.herokuapp.com/update/${productId}`, {
+			method: "put",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(updateProduct),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				alert("product quantity update!!")
+				console.log(data)
+			})
+	}
 	const handleStock = () => {
 		// setQuantity(quantity - 1)
 		const updatedQuantity = productQuantity - 1
-		console.log(quantity)
+
 		setQuantity(productQuantity - 1)
 
-		fetch(`http://localhost:5000/update/${productId}`, {
+		fetch(`https://mohasin-laptop-market.herokuapp.com/update/${productId}`, {
 			method: "put",
 			headers: {
 				"content-type": "application/json",
@@ -56,14 +72,23 @@ const ProductDetail = () => {
 				</p>
 				<p>
 					<b>Stock :</b>
-					update {quantity}
+					{productQuantity}
 				</p>
 				<p>
 					<b>Description :</b> {productDescription}
 				</p>
+				<form onSubmit={updateStock}>
+					<input
+						className="w-25 m-2"
+						type="number"
+						name="updateQuantity"
+						id=""
+					/>
+					<input className="btn btn-info" type="submit" value="update Stock" />
+				</form>
 				<button
 					onClick={() => updateProductHandle(_id)}
-					className="btn btn-info"
+					className="btn btn-info mx-2"
 				>
 					Update product
 				</button>

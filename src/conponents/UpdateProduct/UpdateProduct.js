@@ -5,7 +5,7 @@ const UpdateProduct = () => {
 	const { updateId } = useParams()
 	const [updateProduct, setUpdateProduct] = useState({})
 	useEffect(() => {
-		const url = `http://localhost:5000/product/${updateId}`
+		const url = `https://mohasin-laptop-market.herokuapp.com/product/${updateId}`
 		fetch(url)
 			.then((res) => res.json())
 			.then((data) => setUpdateProduct(data))
@@ -25,7 +25,7 @@ const UpdateProduct = () => {
 			productImg,
 		}
 
-		const url = `http://localhost:5000/update/${updateId}`
+		const url = `https://mohasin-laptop-market.herokuapp.com/update/${updateId}`
 		fetch(url, {
 			method: "put",
 			headers: {

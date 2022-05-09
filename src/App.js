@@ -12,11 +12,12 @@ import NotFound from "./conponents/NotFound/NotFound"
 import UpdateProduct from "./conponents/UpdateProduct/UpdateProduct"
 import ManageProducts from "./conponents/ManageProducts/ManageProducts"
 import RequireAuth from "./conponents/RequierAuth/RequireAuth"
+import Blogs from "./conponents/Blogs/Blogs"
 function App() {
 	/* const [user, setUser] = useState([])
 
 	useEffect(() => {
-		fetch("http://localhost:5000/users")
+		fetch("https://mohasin-laptop-market.herokuapp.com/users")
 			.then((res) => res.json())
 			.then((data) => setUser(data))
 	}, [])
@@ -27,7 +28,7 @@ function App() {
 		const email = event.target.email.value
 		const user = { name, email }
 		//send data to server
-		fetch("http://localhost:5000/users", {
+		fetch("https://mohasin-laptop-market.herokuapp.com/users", {
 			method: "post",
 			headers: {
 				"content-type": "application/json",
@@ -44,6 +45,7 @@ function App() {
 				<Route path="/" element={<Home />}></Route>
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/register" element={<Register />}></Route>
+				<Route path="/blogs" element={<Blogs />}></Route>
 				<Route
 					path="/product"
 					element={

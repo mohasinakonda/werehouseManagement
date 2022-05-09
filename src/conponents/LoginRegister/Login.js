@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import {
 	useAuthState,
+	useSendPasswordResetEmail,
 	useSignInWithEmailAndPassword,
 	useSignInWithGoogle,
 } from "react-firebase-hooks/auth"
@@ -10,8 +11,10 @@ import auth from "../../FIrebaseConfig/FireBase.config"
 import SpinContainer from "../Spinner/Spinner"
 import "./login.css"
 const Login = () => {
+	const [email, setEmail] = useState("")
 	const [user, loading] = useAuthState(auth)
 	const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth)
+	const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth)
 
 	const [signInWithEmailAndPassword, passUser, passLoading, error] =
 		useSignInWithEmailAndPassword(auth)
@@ -33,9 +36,15 @@ const Login = () => {
 		navigate(from, { replace: true })
 		// navigate("/")
 	}
-
+	const getEmail = (event) => {
+		setEmail(event.target.value)
+	}
 	const handleGoogleSignIn = () => {
 		signInWithGoogle()
+	}
+	const resetPassword = async (event) => {
+		await sendPasswordResetEmail(email)
+		alert("Sent email")
 	}
 	return (
 		<div className="w-75 mx-auto">
@@ -49,6 +58,7 @@ const Login = () => {
 				<div className="m-2 col-lg-5 col-md-12">
 					<form onSubmit={handleLogin}>
 						<input
+							onChange={getEmail}
 							className="w-100 p-2 border-style"
 							type="email"
 							name="email"
@@ -68,7 +78,18 @@ const Login = () => {
 							value="Login"
 						/>
 					</form>
-					<p className="py-3">
+					<p className="pt-3 m-0">
+						Forget password?{" "}
+						<button
+							style={{ outline: "none", border: "none", color: "#0d6efd" }}
+							className="btn "
+							onClick={resetPassword}
+						>
+							Reset password
+						</button>
+					</p>
+
+					<p className="pt-3 ">
 						Need have an account?
 						<Link
 							style={{ textDecoration: "none", marginLeft: "5px" }}

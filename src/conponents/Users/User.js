@@ -4,7 +4,7 @@ import UserNav from "./UserNav"
 const User = () => {
 	const [users, setUsers] = useState([])
 	useEffect(() => {
-		fetch("http://localhost:5000/user")
+		fetch("https://mohasin-laptop-market.herokuapp.com/user")
 			.then((res) => res.json())
 			.then((users) => setUsers(users))
 	}, [])
