@@ -14,31 +14,9 @@ import ManageProducts from "./conponents/ManageProducts/ManageProducts"
 import RequireAuth from "./conponents/RequierAuth/RequireAuth"
 import Blogs from "./conponents/Blogs/Blogs"
 import MyItem from "./conponents/MyItem/MyItem"
+import "react-toastify/dist/ReactToastify.css"
+import { ToastContainer } from "react-toastify"
 function App() {
-	/* const [user, setUser] = useState([])
-
-	useEffect(() => {
-		fetch("https://mohasin-laptop-market.herokuapp.com/users")
-			.then((res) => res.json())
-			.then((data) => setUser(data))
-	}, [])
-
-	const handleUser = (event) => {
-		event.preventDefault()
-		const name = event.target.name.value
-		const email = event.target.email.value
-		const user = { name, email }
-		//send data to server
-		fetch("https://mohasin-laptop-market.herokuapp.com/users", {
-			method: "post",
-			headers: {
-				"content-type": "application/json",
-			},
-			body: JSON.stringify(user),
-		}).then((res) => res.json())
-		// .then((data) => setUser(data))
-	}
- */
 	return (
 		<div>
 			<Header></Header>
@@ -82,6 +60,7 @@ function App() {
 				></Route>
 				<Route path="*" element={<NotFound></NotFound>}></Route>
 			</Routes>
+			<ToastContainer></ToastContainer>
 		</div>
 	)
 }

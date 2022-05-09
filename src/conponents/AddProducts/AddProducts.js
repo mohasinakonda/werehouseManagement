@@ -1,6 +1,7 @@
 import React from "react"
 
 import { useAuthState } from "react-firebase-hooks/auth"
+import { toast } from "react-toastify"
 import auth from "../../FIrebaseConfig/FireBase.config"
 
 const AddProducts = () => {
@@ -32,7 +33,7 @@ const AddProducts = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				event.target.reset()
-				alert("product added my stock")
+				toast("product added my stock")
 			})
 	}
 	return (

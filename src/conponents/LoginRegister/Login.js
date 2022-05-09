@@ -6,6 +6,7 @@ import {
 	useSignInWithGoogle,
 } from "react-firebase-hooks/auth"
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 import auth from "../../FIrebaseConfig/FireBase.config"
 
 import SpinContainer from "../Spinner/Spinner"
@@ -44,7 +45,7 @@ const Login = () => {
 	}
 	const resetPassword = async (event) => {
 		await sendPasswordResetEmail(email)
-		alert("Sent email")
+		toast("Sent email for reset password")
 	}
 	return (
 		<div className="w-75 mx-auto">

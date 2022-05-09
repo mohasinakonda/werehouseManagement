@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 import auth from "../../FIrebaseConfig/FireBase.config"
 
 const MyItem = () => {
@@ -20,15 +21,19 @@ const MyItem = () => {
 		navigate(`/update/${id}`)
 	}
 	const deleteHandler = (id) => {
-		const url = `https://mohasin-laptop-market.herokuapp.com/product/${id}`
-		fetch(url, {
-			method: "delete",
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				const restProducts = item.filter((u) => u._id !== id)
-				setItem(restProducts)
+		const proceedDelete = window.confirm("Are you sure to delete !")
+		if (proceedDelete) {
+			const url = `https://mohasin-laptop-market.herokuapp.com/product/${id}`
+			fetch(url, {
+				method: "delete",
 			})
+				.then((res) => res.json())
+				.then((data) => {
+					const restProducts = item.filter((u) => u._id !== id)
+					toast("Item delete success")
+					setItem(restProducts)
+				})
+		}
 	}
 	if (item.length === 0) {
 		return <h2 className="text-center">There is no more product found</h2>

@@ -16,16 +16,19 @@ const ManageProducts = () => {
 		navigate(`/update/${id}`)
 	}
 	const deleteHandler = (id) => {
-		const url = `https://mohasin-laptop-market.herokuapp.com/product/${id}`
-		fetch(url, {
-			method: "delete",
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				const restProducts = manageProduct.filter((u) => u._id !== id)
-				setManageProduct(restProducts)
-				console.log(data)
+		const proceedDelete = window.confirm("Are you sure to delete !")
+		if (proceedDelete) {
+			const url = `https://mohasin-laptop-market.herokuapp.com/product/${id}`
+			fetch(url, {
+				method: "delete",
 			})
+				.then((res) => res.json())
+				.then((data) => {
+					const restProducts = manageProduct.filter((u) => u._id !== id)
+					setManageProduct(restProducts)
+					console.log(data)
+				})
+		}
 	}
 	if (manageProduct.length === 0) {
 		return <h2 className="text-center">No more data found</h2>

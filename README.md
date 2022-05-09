@@ -10,6 +10,6 @@ see more here [Laptop mart](https://laptop-mart.netlify.app/).
 
 ### [blogs](https://laptop-mart.netlify.app/blogs).
 
-## Here is stack over flow question .\
+## Here is stack over flow question .
 
 see my stack overflow question [stack overflow question](https://stackoverflow.com/questions/72169084/heroku-route-does-not-work-remotely-but-locally-work)

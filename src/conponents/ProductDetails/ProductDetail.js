@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { toast } from "react-toastify"
 
 const ProductDetail = () => {
 	const { productId } = useParams()
@@ -27,6 +28,10 @@ const ProductDetail = () => {
 	const updateStock = (event) => {
 		event.preventDefault()
 		const updateQuantity = Number(event.target.updateQuantity.value)
+		if (updateQuantity <= 0) {
+			alert("please input valid input")
+			return
+		}
 		const newQuantity = Number(productQuantity) + updateQuantity
 		setQuantity(newQuantity)
 		const restProduct = { productName, productImg, productSeller }
@@ -49,7 +54,7 @@ const ProductDetail = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				event.target.reset()
-				alert("product quantity update!!")
+				toast("product quantity update!!")
 			})
 	}
 	const handleStock = () => {
@@ -76,7 +81,7 @@ const ProductDetail = () => {
 				res.json()
 			})
 			.then((data) => {
-				alert("product delivered!!")
+				toast("product delivered!!")
 			})
 	}
 	const updateProductHandle = (id) => {
