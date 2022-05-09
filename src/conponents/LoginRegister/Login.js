@@ -31,7 +31,7 @@ const Login = () => {
 	}
 
 	if (error) {
-		alert(error.message)
+		toast(error.message)
 	}
 	if (user) {
 		navigate(from, { replace: true })
